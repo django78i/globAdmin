@@ -1,0 +1,12 @@
+<p>{{data.place.nom}}</p>
+
+<div *ngIf="infoList |async as info">
+    <p *ngFor="let i of info" (click)="getPhoto(i)">{{i.formatted_address}}</p>
+    <!-- <button >Avoir les photos</button> -->
+</div>
+<div *ngIf="photoList | async as photo" style="display: flex;gap: 5px;">
+    <!-- <div *ngFor="let p of photo" style="height: 100px ;width: 100px;"> -->
+    <img *ngFor="let p of tofList" [src]="p" alt="">
+    <!-- </div> -->
+</div>
+<button (click)="getInfo()">Avoir les infos</button>

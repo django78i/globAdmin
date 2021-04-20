@@ -1,0 +1,19 @@
+<section class="fullPage">
+    <div class="centrale">
+        <form [formGroup]="logForm" (ngSubmit)="log()">
+            <div class="form-group">
+                <mat-form-field appearance="legacy" style="width: 100%;">
+                    <mat-label>Votre mail</mat-label>
+                    <input matInput placeholder="Entrez un mail" class="form-control" formControlName="mail">
+                </mat-form-field>
+                <mat-form-field appearance="legacy" style="width: 100%;">
+                    <mat-label>mot de Passe</mat-label>
+                    <input matInput placeholder="Entrez un mot de passe" class="form-control" formControlName="password"
+                        type="password">
+                </mat-form-field>
+            </div>
+            <p *ngIf="errorMsg|async as error" style="color: red;">try again</p>
+            <button mat-raised-button color="primary" [disabled]="logForm.invalid">Se connecter</button>
+        </form>
+    </div>
+</section>

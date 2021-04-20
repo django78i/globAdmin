@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "globeasy-b3683": {
+      "hosting": {
+        "globeasyAdmin": [
+          "globeasy-b3683"
+        ]
+      }
+    }
+  }
+}

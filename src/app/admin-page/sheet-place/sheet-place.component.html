@@ -1,0 +1,10 @@
+<p>add-place works!</p>
+<div *ngIf="data$|async">
+    <button mat-raised-button color="warn" (click)="savePlaces()">enregistrer</button>
+    <ul>
+        <li *ngFor="let d of data">
+            {{d.nom}} {{d.ville}} {{d.type}}
+        </li>
+    </ul>
+
+</div>

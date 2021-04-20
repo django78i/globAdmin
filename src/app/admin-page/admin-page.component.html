@@ -1,0 +1,19 @@
+<mat-toolbar>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>Admin</span>
+    <span class="example-spacer"></span>
+
+    <button mat-raised-button color="warn" (click)="logout()">Déconnexion</button>
+</mat-toolbar>
+<mat-drawer-container class="example-container" style="height: calc(100% - 64px); padding-bottom: 20px;">
+    <mat-drawer mode="side" opened style="width: 200px; padding: 20px;">
+        <p routerLink="users">utilisateurs</p>
+        <p routerLink="customers">Points d'intérêts</p>
+        <p routerLink="sheetPlace">Ajouter lieux via GoogleSheet</p>
+    </mat-drawer>
+    <mat-drawer-content style="margin-left: 220px;padding: 20px 20px 20px 40px ">
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>
