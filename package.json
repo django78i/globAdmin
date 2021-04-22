@@ -26,8 +26,10 @@
     "angularfire2": "^5.4.2",
     "firebase": "^8.4.1",
     "googleapis": "^71.0.0",
+    "ngx-useful-swiper": "^10.0.1",
     "rxjs": "~6.6.0",
     "rxjs-compat": "^6.6.7",
+    "swiper": "^6.5.7",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
   },

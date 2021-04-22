@@ -1,0 +1,42 @@
+.swiper-container {
+  margin-top: 20px;
+  width: 100%;
+  height: 110px;
+  overflow: visible !important;
+}
+
+.swiper-slide {
+  position: relative;
+  border-radius: 30px;
+  width: 100px !important;
+  height: 100px !important;
+  margin-right: 10px;
+  background-position: center;
+  background-size: contain;
+}
+
+.swiper-pagination {
+  bottom: -25px !important;
+}
+
+.photo {
+  height: 200px;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 40px;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+
+.photo > input {
+  display: none;
+}
+
+.photo img {
+  width: 80px;
+  cursor: pointer;
+}

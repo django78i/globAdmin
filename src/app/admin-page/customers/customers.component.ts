@@ -8,6 +8,8 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { SelectionModel } from '@angular/cdk/collections';
+import { MatSort } from '@angular/material/sort';
 
 export interface PeriodicElement {
 	position: number,
@@ -35,10 +37,13 @@ export interface DialogData {
 export class CustomersComponent implements OnInit, AfterViewInit {
 	placesList: Observable<any> = new Observable;
 	usTemplate: any[] = [];
-	displayedColumns: string[] = ['position', 'nom', 'adresse'];
+	displayedColumns: string[] = ['select', 'position', 'nom', 'adresse'];
 	dataSource = new MatTableDataSource<any[]>();
 	expandedElement?: PeriodicElement | null;
+	selection = new SelectionModel<any[]>(true, []);
+
 	@ViewChild(MatPaginator) paginator: MatPaginator;
+	@ViewChild(MatSort) sort: MatSort;
 
 	constructor(public ips: InterestsPlacesService, public dialog: MatDialog) { }
 
@@ -46,30 +51,39 @@ export class CustomersComponent implements OnInit, AfterViewInit {
 		this.placesList = this.ips.getPlacesList().pipe(
 			tap(r => {
 				this.usTemplate = r.map((v: any, index) => {
-					// if (this.paginator) {
-					// 	this.paginator.pageIndex = index;
-					// }
 					return {
 						position: index,
 						nom: v.nom,
-						adresse: `${v.adresse.rue} ${v.adresse.codePostal}, ${v.ville}`,
+						adresse: v.adresse,
 						description: '',
-						uid: v.id
+						uid: v.uid,
+						photos: v.photo,
+						photoProfil: ''
 					}
 				})
-				this.dataSource.paginator = this.paginator;
 				this.dataSource.data = this.usTemplate;
-				console.log(this.usTemplate.length);
+				console.log(r.place);
 			})
 		);;
 	}
 
 
 	ngAfterViewInit() {
+		this.dataSource.paginator = this.paginator;
+		this.dataSource.sort = this.sort;
 		console.log(this.paginator)
 	}
 
 
+
+	applyFilter(event: Event) {
+		const filterValue = (event.target as HTMLInputElement).value;
+		this.dataSource.filter = filterValue.trim().toLowerCase();
+
+		if (this.dataSource.paginator) {
+			this.dataSource.paginator.firstPage();
+		}
+	}
 
 
 	openDialog(r: any) {
@@ -87,13 +101,28 @@ export class CustomersComponent implements OnInit, AfterViewInit {
 		this.dialog.open(AddPlaceComponent, {
 			height: '300px',
 			width: '500px',
-			// data: {
-			// 	place: r
-			// }
-
 		});
 
 	}
 
+	isAllSelected() {
+		const numSelected = this.selection.selected.length;
+		const numRows = this.dataSource.data.length;
+		return numSelected === numRows;
+	}
+
+	/** Selects all rows if they are not all selected; otherwise clear selection. */
+	masterToggle() {
+		this.isAllSelected() ?
+			this.selection.clear() :
+			this.dataSource.data.forEach(row => this.selection.select(row));
+	}
+
+	checkboxLabel(row?: any): string {
+		if (!row) {
+			return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+		}
+		return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+	}
 
 }

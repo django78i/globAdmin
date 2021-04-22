@@ -31,7 +31,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatIconModule,
     MatSidenavModule,
     UsersModule,
-    CustomersModule
+    CustomersModule,
   ]
 })
 export class AdminPageModule { }

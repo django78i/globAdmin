@@ -1,3 +1,4 @@
+import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 import { PopUpPlaceComponent } from './pop-up-place.component';
 import { MatTableModule } from '@angular/material/table';
 import { NgModule } from '@angular/core';
@@ -16,24 +17,25 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
-    declarations: [
-        PopUpPlaceComponent
-    ],
-      entryComponents: [
-        PopUpPlaceComponent
-      ],
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        FormsModule,
-        MatFormFieldModule,
-        MatButtonModule,
-        MatInputModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatSidenavModule,
-        MatTableModule,
-        MatDialogModule
-    ]
+  declarations: [
+    PopUpPlaceComponent
+  ],
+  entryComponents: [
+    PopUpPlaceComponent
+  ],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatTableModule,
+    MatDialogModule,
+    NgxUsefulSwiperModule
+  ]
 })
 export class PlacesModule { }

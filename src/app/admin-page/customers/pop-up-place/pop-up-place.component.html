@@ -1,12 +1,35 @@
-<p>{{data.place.nom}}</p>
+<div *ngIf="place$|async as place">
+    <div style="display: flex;gap: 10px;">
+        <mat-form-field appearance="standard">
+            <mat-label>Nom</mat-label>
+            <input matInput placeholder="Placeholder" [(ngModel)]="place.nom">
+        </mat-form-field>
 
-<div *ngIf="infoList |async as info">
-    <p *ngFor="let i of info" (click)="getPhoto(i)">{{i.formatted_address}}</p>
-    <!-- <button >Avoir les photos</button> -->
+        <mat-form-field appearance="standard">
+            <mat-label>adresse</mat-label>
+            <input matInput placeholder="Placeholder" [(ngModel)]="place.adresse">
+        </mat-form-field>
+    </div>
+
+    <button (click)="deletePhoto()" *ngIf="displayConfirm">Supprimer</button>
+    <div class="swiper-container">
+        <swiper [config]="config" #usefulSwiper>
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="photo" style="border: none;">
+                        <label for="typeFile-input">
+                            <img src="../../../../assets/add_circle_outline-black-18dp.svg" alt="">
+                        </label>
+                        <input #takeInput type="file" (change)="uploadFile($event)" id="typeFile-input">
+                    </div>
+                </div>
+                <div class="swiper-slide" *ngFor="let p of place.photo">
+                    <span class="material-icons supp" (click)="confirmDelete(p)"
+                        style="position: absolute;">cancel</span>
+                    <div class="photo" [ngStyle]="{'background-image': 'url(' + p + ')'}"></div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </swiper>
+    </div>
 </div>
-<div *ngIf="photoList | async as photo" style="display: flex;gap: 5px;">
-    <!-- <div *ngFor="let p of photo" style="height: 100px ;width: 100px;"> -->
-    <img *ngFor="let p of tofList" [src]="p" alt="">
-    <!-- </div> -->
-</div>
-<button (click)="getInfo()">Avoir les infos</button>

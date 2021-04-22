@@ -14,7 +14,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSortModule} from '@angular/material/sort';
 
 
 @NgModule({
@@ -32,8 +34,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatPaginatorModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    HttpClientModule
-    // LazyModule
+    HttpClientModule,
+    NgxUsefulSwiperModule,
+    MatCheckboxModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]
